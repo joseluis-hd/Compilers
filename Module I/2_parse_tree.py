@@ -208,7 +208,7 @@ def main():
     if len(sys.argv) > 1:
         expr = " ".join(sys.argv[1:])
     else:
-        expr = input("Ingrese una expresión: ")
+        expr = input("Ingrese una expresión: ") #(2+3)+((4*2)^2)*(7/2(8+2))-1
 
     try:
         toks = tokenize(expr)
