@@ -1,6 +1,6 @@
 '''
 José Luis Haro Díaz
-Actividad 1. Autómatas
+Práctica 1. Autómatas
 '''
 
 class Automata:
