@@ -84,7 +84,9 @@ class Automata:
 
 
 def main():
-    entrada = "variable1 _var2 anotherVar3 var invalid-var $badVar @haro /emma (jose) .diaZ 30RomEro"  
+    entrada = "variable1 _var2 anotherVar3 var invalid-var $badVar @haro /emma (jose) .diaZ 30RomEro"
+    print("Original Data")
+    print(entrada)  
     automata = Automata()
     automata.procesar_entrada(entrada)
 
@@ -97,3 +99,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
