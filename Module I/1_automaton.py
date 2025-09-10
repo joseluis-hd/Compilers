@@ -1,6 +1,6 @@
 '''
 José Luis Haro Díaz
-Práctica 1. Autómatas
+1. Automaton
 '''
 
 class Automata:

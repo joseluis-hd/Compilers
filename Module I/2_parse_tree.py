@@ -1,6 +1,6 @@
 '''
 José Luis Haro Díaz
-Práctica 2. Árbol de Parseo
+2. Parse Tree
 '''
 
 import sys

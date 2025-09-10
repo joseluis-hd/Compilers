@@ -1,4 +1,3 @@
-
 '''
 José Luis Haro Díaz
 Práctica 3. Generación de código intermedio
