@@ -7,7 +7,8 @@
 
 #define TAM_BUFFER 100
 
-class Lexico {
+class Lexico
+{
     const char* nombreFichero;
     FILE* entrada;
     int nl;

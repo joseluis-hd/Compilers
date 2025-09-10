@@ -1,48 +1,51 @@
 #include "lexico.hpp"
 #include <iostream>
-#include <cctype>  // islower, isdigit
+#include <string>
+#include <cctype>
 
-using namespace std;
-
-static const char* categoria(char t) {
-    if (t == 'M' || t == 'R' || t == 'W') return "RESERVADA";
-    if (t == '=' || t == '(' || t == ')' || t == ';' || t == '{' || t == '}'
-        || t == '.') return "SIMBOLO";
-    if (t == '+' || t == '-' || t == '*' || t == '/' || t == '&') return "OPERADOR";
-    if (islower(static_cast<unsigned char>(t))) return "ID";
-    if (isdigit(static_cast<unsigned char>(t))) return "NUM";
-    if (t == EOF) return "EOF";
+static const char* categoria(char t)
+{
+    if (t=='M'||t=='R'||t=='W') return "RESERVADA";
+    if (t=='='||t=='('||t==')'||t==';'||t=='{'||t=='}'||t=='.') return "SIMBOLO";
+    if (t=='+'||t=='-'||t=='*'||t=='/'||t=='&') return "OPERADOR";
+    if (std::islower((unsigned char)t)) return "ID";
+    if (std::isdigit((unsigned char)t)) return "NUM";
+    if (t==EOF) return "EOF";
     return "DESCONOCIDO";
 }
 
-int main(int argc, char* argv[]) {
-    if (argc < 2) {
-        cout << "Uso: " << argv[0] << " <programa.txt> [traza]" << endl;
-        return 1;
+int main(int argc, char* argv[])
+{
+    std::string ruta;
+    int traza = 0;
+
+    if (argc < 2)
+    {
+        std::cout << "Ruta del archivo a analizar: ";
+        std::getline(std::cin, ruta);
+    } else
+    {
+        ruta = argv[1];
+        if (argc >= 3) traza = 1;
     }
 
-    const char* fichero = argv[1];
-    int traza = (argc >= 3) ? 1 : 0;
+    Lexico lex(ruta.c_str(), traza);
 
-    Lexico lex((char*)fichero, traza);
-
-    cout << "== ANALISIS LEXICO ==" << endl;
-
-    while (true) {
+    std::cout << "============== ANALISIS LEXICO ==============\n";
+    while (true)
+    {
         char token = lex.siguienteToken();
-        if (token == EOF) {
-            cout << "[EOF]" << endl;
-            break;
+        if (token == EOF)
+        {
+            std::cout << "[EOF]\n"; break;
         }
-        cout << "Token: '" << token << "'  "
-             << "Tipo: " << categoria(token)
-             << "  (linea " << lex.lineaActual() << ")" << endl;
-
-        if (token == '.') {
-            cout << "[FIN DE PROGRAMA POR '.']" << endl;
-            break;
+        std::cout << "Token: '" << token << "'  "
+                  << "Tipo: " << categoria(token)
+                  << "  (linea " << lex.lineaActual() << ")\n";
+        if (token == '.')
+        {
+            std::cout << "[FIN DE PROGRAMA POR: '.']\n"; break;
         }
     }
-
     return 0;
 }

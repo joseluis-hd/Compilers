@@ -7,29 +7,34 @@
 using std::cout;
 using std::endl;
 
-Lexico::Lexico(const char* unNombreFichero, int una_traza)
-    : nombreFichero(unNombreFichero), entrada(nullptr), nl(1), traza(una_traza ? 1 : 0), pBuffer(0) {
-
+Lexico::Lexico(const char* unNombreFichero, int una_traza) : nombreFichero(unNombreFichero), entrada(nullptr), nl(1), traza(una_traza ? 1 : 0), pBuffer(0)
+    {
     entrada = std::fopen(unNombreFichero, "r");
-    if (!entrada) {
-        cout << "No se puede abrir el fichero " << unNombreFichero << endl;
+    if (!entrada)
+    {
+        cout << "Error al abrir el fichero." << unNombreFichero << endl;
         std::exit(-2);
     }
 }
 
-Lexico::~Lexico(void) {
+Lexico::~Lexico(void)
+{
     if (entrada) std::fclose(entrada);
 }
 
-char Lexico::siguienteToken(void) {
+char Lexico::siguienteToken(void)
+{
     int ic;
     char car;
 
-    while (true) {
-        if (pBuffer > 0) {
+    while (true)
+    {
+        if (pBuffer > 0)
+        {
             car = buffer[--pBuffer];
             ic = static_cast<unsigned char>(car);
-        } else {
+        } else
+        {
             ic = std::getc(entrada);
             if (ic == EOF) return static_cast<char>(EOF);
             car = static_cast<char>(ic);
@@ -37,21 +42,25 @@ char Lexico::siguienteToken(void) {
 
         if (car == '\x0') continue;
         if (car == '\r') continue;
-        if (car == '\n') { ++nl; continue; }
+        if (car == '\n')
+        {
+            ++nl; continue;
+        }
         if (car == ' ' || car == '\t') continue;
         break;
     }
 
     if (traza) cout << "ANALIZADOR LEXICO: Lee el token '" << car << "'" << endl;
 
-    switch (car) {
-        case 'M': case 'R': case 'W':
-        case '=':
-        case '(': case ')':
-        case ';':
+    switch (car)
+    {
+        case 'M': case 'R': case 'W': // palabras reservadas
+        case '=': // asignacion
+        case '(': case ')': // parentesis
+        case ';':  // separadores
         case '{': case '}':
-        case '.':
-        case '+': case '-': case '*': case '/': case '&':
+        case '.': /// fin del programa
+        case '+': case '-': case '*': case '/': case '&': // operadores aritmeticos
             return car;
         default: break;
     }
@@ -62,11 +71,13 @@ char Lexico::siguienteToken(void) {
     cout << "ERROR LEXICO: TOKEN DESCONOCIDO '" << car
          << "' en línea " << nl << endl;
     std::exit(-4);
-    return car; // no se alcanza
+    return car;
 }
 
-void Lexico::devuelveToken(char token) {
-    if (pBuffer >= TAM_BUFFER) {
+void Lexico::devuelveToken(char token)
+{
+    if (pBuffer >= TAM_BUFFER)
+    {
         cout << "ERROR: DESBORDAMIENTO DEL BUFFER DEL ANALIZADOR LEXICO" << endl;
         std::exit(-5);
     }
