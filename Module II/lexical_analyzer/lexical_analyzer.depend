@@ -1,0 +1,18 @@
+# depslib dependency file v1.0
+1757480018 source:c:\users\pc\onedrive\documentos\github\compilers\module ii\lexical_analyzer\main.cpp
+	"lexico.hpp"
+	<iostream>
+	<cctype>
+
+1757480394 c:\users\pc\onedrive\documentos\github\compilers\module ii\lexical_analyzer\include\lexico.hpp
+	<stdio.h>
+	<ctype.h>
+	<stdlib.h>
+
+1757479966 source:c:\users\pc\onedrive\documentos\github\compilers\module ii\lexical_analyzer\src\lexico.cpp
+	"lexico.hpp"
+	<iostream>
+	<cstdio>
+	<cstdlib>
+	<cctype>
+
