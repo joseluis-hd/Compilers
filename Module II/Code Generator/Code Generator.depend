@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1758409920 source:c:\users\pc\onedrive\documentos\github\compilers\module ii\code generator\src\genera.cpp
+	"genera.hpp"
+
+1758410127 c:\users\pc\onedrive\documentos\github\compilers\module ii\code generator\include\genera.hpp
+	<iostream>
+	<cstdlib>
+	<cstdio>
+
