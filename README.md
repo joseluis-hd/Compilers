@@ -17,11 +17,13 @@ Each practice is designed for educational purposes within the **Compilers (IL359
 | 2 | Parse Tree Generator (Syntax Analysis) | [2_parse_tree.py](https://github.com/joseluis-hd/Compilers/blob/main/Module%20I/2_parse_tree.py) |
 | 3 | Intermediate Code Generator | [3_intermediate_code.py](https://github.com/joseluis-hd/Compilers/blob/main/Module%20I/3_intermediate_code.py) |
 
-### Module II – Lexical Analysis
+### Module II – Lexical & Syntax Analysis
 | # | Title | Language | File |
 |---|-------|----------|------|
-| 1 | Lexical Analyzer (File-based) | C++ | [`lexico.cpp`](https://github.com/joseluis-hd/Compilers/blob/main/Module%20II/lexical_analyzer/src/lexico.cpp) / [`main.cpp`](https://github.com/joseluis-hd/Compilers/blob/main/Module%20II/lexical_analyzer/src/main.cpp) / [`lexico.hpp`](https://github.com/joseluis-hd/Compilers/blob/main/Module%20II/lexical_analyzer/include/lexico.hpp) |
+| 1 | Lexical Analyzer (File-based) | C++ | [`lexico.cpp`](https://github.com/joseluis-hd/Compilers/blob/main/Module%20II/Lexical%20Analyzer/src/lexico.cpp) / [`main.cpp`](https://github.com/joseluis-hd/Compilers/blob/main/Module%20II/Lexical%20Analyzer/src/main.cpp) / [`lexico.hpp`](https://github.com/joseluis-hd/Compilers/blob/main/Module%20II/Lexical%20Analyzer/include/lexico.hpp) |
 | 1.1 | Token Analyzer (Expressions) | Python | [actividad_1_1_token.py](https://github.com/joseluis-hd/Compilers/blob/main/Module%20II/actividad_1_1_token.py) |
+| 2 | Code Generator | C++ | [`code_generator.cpp`](https://github.com/joseluis-hd/Compilers/blob/main/Module%20II/Code%20Generator/src/code_generator.cpp) / [`main.cpp`](https://github.com/joseluis-hd/Compilers/blob/main/Module%20II/Code%20Generator/src/main.cpp) / [`code_generator.hpp`](https://github.com/joseluis-hd/Compilers/blob/main/Module%20II/Code%20Generator/include/code_generator.hpp) |
+| 2.1 | Syntax Tree (Expressions) | Python | [actividad_2_1_arbol.py](https://github.com/joseluis-hd/Compilers/blob/main/Module%20II/2_1_tree.py) |
 
 > **Note:** This README will be updated throughout the semester as new practices are added.
 
@@ -31,10 +33,12 @@ Each practice is designed for educational purposes within the **Compilers (IL359
 - **Python**  
   - Version: **3.13+**  
 
+
 - **C++**  
   - Compiler: **GCC / G++ 11+** (tested with C++17)  
 
-  
+---
+
 ## 👨‍💻 Author
 **José Luis Haro Díaz**  
 Universidad de Guadalajara – CUCEI  
