@@ -7,10 +7,7 @@ int main()
     ///Cabecera
     gen.code();
 
-    // ------------------------------------------------------------
-    // ESCENARIO A:
-    // Leer dos variables x, y; calcular r = x + y; y mostrar r.
-    // ------------------------------------------------------------
+    /// Ej. 1: Leer dos variables x, y; calcular r = x + y; y mostrar r.
     gen.input('x');        // INPUT x   (leer a x)
     gen.input('y');        // INPUT y   (leer a y)
 
@@ -24,10 +21,7 @@ int main()
 
     gen.output('r');       // OUTPUT r  (mostrar r)
 
-    // ------------------------------------------------------------
-    // ESCENARIO B:
-    // z = (a * b) / c      (con valores leídos)
-    // ------------------------------------------------------------
+    /// Ej.2: z = (a * b) / c      (con valores leídos)
     gen.input('a');        // INPUT a
     gen.input('b');        // INPUT b
     gen.input('c');        // INPUT c
@@ -46,10 +40,7 @@ int main()
     gen.store();           // STORE     (z := (a*b)/c)
     gen.output('z');       // OUTPUT z
 
-    // ------------------------------------------------------------
-    // ESCENARIO C:
-    // t = (-x) mod y       (usar NEG y MOD)
-    // ------------------------------------------------------------
+    ///Ej. 3: t = (-x) mod y       (usar NEG y MOD)
     gen.push('x');         // PUSHA x
     gen.load();            // LOAD
     gen.neg();             // NEG       (-x)
@@ -62,17 +53,12 @@ int main()
     gen.store();           // STORE     (t := (-x) mod y)
     gen.output('t');       // OUTPUT t
 
-    // ------------------------------------------------------------
-    // ESCENARIO D:
-    // Demostración de PUSHC/STORE/OUTPUT con una constante:
-    // k = 5
-    // ------------------------------------------------------------
+    /// Ej. 4: Demostración de PUSHC/STORE/OUTPUT con una constante: k= 5
     gen.pushc('5');        // PUSHC 5
     gen.push('k');         // PUSHA k
     gen.store();           // STORE     (k := 5)
     gen.output('k');       // OUTPUT k
 
-    // Fin del programa objeto
     gen.end();             // END
 
     return 0;
