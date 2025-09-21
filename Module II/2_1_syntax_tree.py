@@ -1,6 +1,6 @@
 '''
 José Luis Haro Díaz
-1.1 Tree
+2.1 Syntax Tree
 '''
 
 class Token:
