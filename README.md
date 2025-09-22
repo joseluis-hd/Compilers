@@ -21,8 +21,8 @@ Each practice is designed for educational purposes within the **Compilers (IL359
 | # | Title | Language | File |
 |---|-------|----------|------|
 | 1 | Lexical Analyzer (File-based) | C++ | [`lexico.cpp`](https://github.com/joseluis-hd/Compilers/blob/main/Module%20II/Lexical%20Analyzer/src/lexico.cpp) / [`main.cpp`](https://github.com/joseluis-hd/Compilers/blob/main/Module%20II/Lexical%20Analyzer/main.cpp) / [`lexico.hpp`](https://github.com/joseluis-hd/Compilers/blob/main/Module%20II/Lexical%20Analyzer/include/lexico.hpp) |
-| 1.1 | Token Analyzer (Expressions) | Python | [actividad_1_1_token.py](https://github.com/joseluis-hd/Compilers/blob/main/Module%20II/1_1_token.py) |
-| 2 | Code Generator | C++ | [`code_generator.cpp`](https://github.com/joseluis-hd/Compilers/blob/main/Module%20II/Code%20Generator/src/genera.cpp) / [`main.cpp`](https://github.com/joseluis-hd/Compilers/blob/main/Module%20II/Code%20Generator/main.cpp) / [`code_generator.hpp`](https://github.com/joseluis-hd/Compilers/blob/main/Module%20II/Code%20Generator/include/genera.hpp) |
+| 1.1 | Token Analyzer (Expressions) | Python | [1_1_token.py](https://github.com/joseluis-hd/Compilers/blob/main/Module%20II/1_1_token.py) |
+| 2 | Code Generator | C++ | [`genera.cpp`](https://github.com/joseluis-hd/Compilers/blob/main/Module%20II/Code%20Generator/src/genera.cpp) / [`main.cpp`](https://github.com/joseluis-hd/Compilers/blob/main/Module%20II/Code%20Generator/main.cpp) / [`cgenera.hpp`](https://github.com/joseluis-hd/Compilers/blob/main/Module%20II/Code%20Generator/include/genera.hpp) |
 | 2.1 | Syntax Tree (Expressions) | Python | [2_1_syntax_tree.py](https://github.com/joseluis-hd/Compilers/blob/main/Module%20II/2_1_syntax_tree.py) |
 
 > **Note:** This README will be updated throughout the semester as new practices are added.
