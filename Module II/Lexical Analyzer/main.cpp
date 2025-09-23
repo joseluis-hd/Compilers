@@ -3,6 +3,8 @@
 #include <string>
 #include <cctype>
 
+///Ruta para test: C:\Users\josel\Documents\GitHub\Compilers\Module II\Lexical Analyzer\test.txt
+
 static const char* categoria(char t)
 {
     if (t=='M'||t=='R'||t=='W') return "RESERVADA";

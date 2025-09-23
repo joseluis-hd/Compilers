@@ -69,7 +69,7 @@ char Lexico::siguienteToken(void)
     if (std::isdigit(static_cast<unsigned char>(car))) return car; // NUM
 
     cout << "ERROR LEXICO: TOKEN DESCONOCIDO '" << car
-         << "' en línea " << nl << endl;
+         << "' en lï¿½nea " << nl << endl;
     std::exit(-4);
     return car;
 }

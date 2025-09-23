@@ -21,7 +21,7 @@ int main()
 
     gen.output('r');       // OUTPUT r  (mostrar r)
 
-    /// Ej.2: z = (a * b) / c      (con valores leídos)
+    /// Ej.2: z = (a * b) / c      (con valores leï¿½dos)
     gen.input('a');        // INPUT a
     gen.input('b');        // INPUT b
     gen.input('c');        // INPUT c
@@ -53,7 +53,7 @@ int main()
     gen.store();           // STORE     (t := (-x) mod y)
     gen.output('t');       // OUTPUT t
 
-    /// Ej. 4: Demostración de PUSHC/STORE/OUTPUT con una constante: k= 5
+    /// Ej. 4: Demostraciï¿½n de PUSHC/STORE/OUTPUT con una constante: k= 5
     gen.pushc('5');        // PUSHC 5
     gen.push('k');         // PUSHA k
     gen.store();           // STORE     (k := 5)
