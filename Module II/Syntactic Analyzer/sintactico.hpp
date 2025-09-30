@@ -4,9 +4,9 @@
 #include <iostream>
 #include <cstdlib>
 
-// Cambia estos includes si tus headers se llaman distinto:
-#include "lexico.hpp"   // o "lexico.h"
-#include "genera.hpp"   // o "code_generator.hpp"
+// Ajusta estos includes si tus nombres difieren:
+#include "lexico.hpp"   // debe declarar: Lexico(char* fuente, int traza), siguienteToken, devuelveToken, existeTraza, lineaActual
+#include "genera.hpp"   // debe declarar: GeneraCodigo(char* objeto), code, end, pushc, push, load, store, add, neg, mul, div, mod, input, output
 
 class Sintactico {
     // Reglas de la gramática
@@ -26,12 +26,11 @@ class Sintactico {
     void constante(void);
     void errores(int codigo);
 
-    // Estados/servicios
+    // Componentes
     Lexico lexico;
     GeneraCodigo generaCodigo;
 
 public:
-    // Crea analizador con archivo fuente (lexico) y archivo objeto (genera)
     Sintactico(char* fuente, char* objeto, int traza);
     ~Sintactico(void);
 

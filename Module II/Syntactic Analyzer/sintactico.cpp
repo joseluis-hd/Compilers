@@ -9,7 +9,6 @@ Sintactico::Sintactico(char* fuente, char* objeto, int traza)
     programa();
 }
 
-/********************************************************************/
 Sintactico::~Sintactico(void) {
     if (lexico.existeTraza()) {
         cout << "FIN DE ANALISIS SINTACTICO" << endl;
@@ -17,7 +16,6 @@ Sintactico::~Sintactico(void) {
     }
 }
 
-/********************************************************************/
 void Sintactico::programa(void) {
     char token;
     if (lexico.existeTraza())
@@ -38,7 +36,6 @@ void Sintactico::programa(void) {
     } else errores(2);
 }
 
-/************************************************************************/
 void Sintactico::bloque(void) {
     if (lexico.existeTraza())
         cout << "ANALISIS SINTACTICO: <BLOQUE>" << endl;
@@ -46,7 +43,6 @@ void Sintactico::bloque(void) {
     otra_sentencia();
 }
 
-/***************************************************************************/
 void Sintactico::otra_sentencia(void) {
     char token;
     if (lexico.existeTraza())
@@ -61,7 +57,6 @@ void Sintactico::otra_sentencia(void) {
     }
 }
 
-/***************************************************************************/
 void Sintactico::sentencia(void) {
     char token;
     if (lexico.existeTraza())
@@ -80,22 +75,20 @@ void Sintactico::sentencia(void) {
     }
 }
 
-/***************************************************************************/
 void Sintactico::asignacion() {
     char token;
     if (lexico.existeTraza())
         cout << "ANALISIS SINTACTICO: <ASIGNACION>" << endl;
 
-    variable();
+    variable();  // deja en la pila la direccion (PUSHA id)
 
     token = lexico.siguienteToken();
     if (token != '=') errores(3);
 
-    expresion();
-    generaCodigo.store();
+    expresion();     // deja en la pila el valor
+    generaCodigo.store(); // STORE (id := valor)
 }
 
-/***************************************************************************/
 void Sintactico::variable(void) {
     char token;
     if (lexico.existeTraza())
@@ -103,11 +96,10 @@ void Sintactico::variable(void) {
 
     token = lexico.siguienteToken();
     if ((token >= 'a') && (token <= 'z')) {
-        generaCodigo.push(token);
+        generaCodigo.push(token); // PUSHA <id>
     } else errores(5);
 }
 
-/**************************************************************************/
 void Sintactico::expresion(void) {
     if (lexico.existeTraza())
         cout << "ANALISIS SINTACTICO: <EXPRESION>" << endl;
@@ -115,7 +107,6 @@ void Sintactico::expresion(void) {
     mas_terminos();
 }
 
-/***************************************************************************/
 void Sintactico::termino(void) {
     if (lexico.existeTraza())
         cout << "ANALISIS SINTACTICO: <TERMINO>" << endl;
@@ -123,7 +114,6 @@ void Sintactico::termino(void) {
     mas_factores();
 }
 
-/**************************************************************************/
 void Sintactico::mas_terminos(void) {
     char token;
     if (lexico.existeTraza())
@@ -136,7 +126,7 @@ void Sintactico::mas_terminos(void) {
         mas_terminos();
     } else if (token == '-') {
         termino();
-        // Implementación de resta como NEG + ADD
+        // Resta como NEG + ADD (a - b  => a + (-b))
         generaCodigo.neg();
         generaCodigo.add();
         mas_terminos();
@@ -145,7 +135,6 @@ void Sintactico::mas_terminos(void) {
     }
 }
 
-/*********************************************************************/
 void Sintactico::factor(void) {
     char token;
     if (lexico.existeTraza())
@@ -162,11 +151,10 @@ void Sintactico::factor(void) {
     } else {
         lexico.devuelveToken(token);
         variable();
-        generaCodigo.load();
+        generaCodigo.load(); // LOAD <id>
     }
 }
 
-/*********************************************************************/
 void Sintactico::mas_factores(void) {
     char token;
     if (lexico.existeTraza())
@@ -175,27 +163,17 @@ void Sintactico::mas_factores(void) {
     token = lexico.siguienteToken();
     switch (token) {
         case '*':
-            factor();
-            generaCodigo.mul();
-            mas_factores();
-            break;
+            factor(); generaCodigo.mul(); mas_factores(); break;
         case '/':
-            factor();
-            generaCodigo.div();
-            mas_factores();
-            break;
+            factor(); generaCodigo.div(); mas_factores(); break;
         case '%':
-            factor();
-            generaCodigo.mod();
-            mas_factores();
-            break;
+            factor(); generaCodigo.mod(); mas_factores(); break;
         default:
-            lexico.devuelveToken(token);
+            lexico.devuelveToken(token); // <vacio>
             break;
     }
 }
 
-/*********************************************************************/
 void Sintactico::lectura(void) {
     char token = lexico.siguienteToken();
     if (lexico.existeTraza())
@@ -205,7 +183,6 @@ void Sintactico::lectura(void) {
     generaCodigo.input(token);
 }
 
-/**********************************************************************/
 void Sintactico::escritura(void) {
     char token = lexico.siguienteToken();
     if (lexico.existeTraza())
@@ -215,7 +192,6 @@ void Sintactico::escritura(void) {
     generaCodigo.output(token);
 }
 
-/**********************************************************************/
 void Sintactico::constante(void) {
     char token;
     if (lexico.existeTraza())
@@ -227,7 +203,6 @@ void Sintactico::constante(void) {
     } else errores(7);
 }
 
-/***************************************************************************/
 void Sintactico::errores(int codigo) {
     cout << "LINEA " << lexico.lineaActual();
     cout << " ERROR SINTACTICO " << codigo;
@@ -241,8 +216,7 @@ void Sintactico::errores(int codigo) {
         case 7: cout << " :ESPERABA UNA CONSTANTE" << endl; break;
         case 8: cout << " :ESPERABA UNA M DE MAIN" << endl; break;
         case 9: cout << " :ESPERABA UNA {" << endl; break;
-        default:
-            cout << " :NO DOCUMENTADO" << endl; break;
+        default: cout << " :NO DOCUMENTADO" << endl; break;
     }
     std::exit(-(codigo + 100));
 }
