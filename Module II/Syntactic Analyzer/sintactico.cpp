@@ -63,6 +63,13 @@ void Sintactico::sentencia(void) {
         cout << "ANALISIS SINTACTICO: <SENTENCIA>" << endl;
 
     token = lexico.siguienteToken();
+
+    // 👇 NUEVO: fin de bloque -> no hay más sentencias
+    if (token == '}') {
+        lexico.devuelveToken(token);
+        return; // <vacio>
+    }
+
     if ((token >= 'a') && (token <= 'z')) {
         lexico.devuelveToken(token);
         asignacion();
