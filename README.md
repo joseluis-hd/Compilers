@@ -18,13 +18,15 @@ Each practice is designed for educational purposes within the **Compilers (IL359
 | 3 | Intermediate Code Generator | [3_intermediate_code.py](https://github.com/joseluis-hd/Compilers/blob/main/Module%20I/3_intermediate_code.py) |
 
 ### Module II – Lexical & Syntax Analysis
-| # | Title | Language | File |
-|---|-------|----------|------|
-| 1 | Lexical Analyzer (File-based) | C++ | [`lexico.cpp`](https://github.com/joseluis-hd/Compilers/blob/main/Module%20II/Lexical%20Analyzer/src/lexico.cpp) / [`main.cpp`](https://github.com/joseluis-hd/Compilers/blob/main/Module%20II/Lexical%20Analyzer/main.cpp) / [`lexico.hpp`](https://github.com/joseluis-hd/Compilers/blob/main/Module%20II/Lexical%20Analyzer/include/lexico.hpp) |
-| 1.1 | Token Analyzer (Expressions) | Python | [1_1_token.py](https://github.com/joseluis-hd/Compilers/blob/main/Module%20II/1_1_token.py) |
-| 2 | Code Generator | C++ | [`genera.cpp`](https://github.com/joseluis-hd/Compilers/blob/main/Module%20II/Code%20Generator/src/genera.cpp) / [`main.cpp`](https://github.com/joseluis-hd/Compilers/blob/main/Module%20II/Code%20Generator/main.cpp) / [`genera.hpp`](https://github.com/joseluis-hd/Compilers/blob/main/Module%20II/Code%20Generator/include/genera.hpp) |
-| 2.1 | Syntax Tree (Expressions) | Python | [2_1_syntax_tree.py](https://github.com/joseluis-hd/Compilers/blob/main/Module%20II/2_1_syntax_tree.py) |
-| 3 | Semantic Automaton | Python | [3_semantic_automaton.py](https://github.com/joseluis-hd/Compilers/blob/main/Module%20II/3_semantic_automaton.py) |
+| #   | Title                          | Language | File |
+|-----|--------------------------------|----------|------|
+| 1   | Lexical Analyzer (File-based)  | C++      | [`lexico.cpp`](https://github.com/joseluis-hd/Compilers/blob/main/Module%20II/Lexical%20Analyzer/src/lexico.cpp) / [`main.cpp`](https://github.com/joseluis-hd/Compilers/blob/main/Module%20II/Lexical%20Analyzer/main.cpp) / [`lexico.hpp`](https://github.com/joseluis-hd/Compilers/blob/main/Module%20II/Lexical%20Analyzer/include/lexico.hpp) |
+| 1.1 | Token Analyzer (Expressions)   | Python   | [1_1_token.py](https://github.com/joseluis-hd/Compilers/blob/main/Module%20II/1_1_token.py) |
+| 2   | Code Generator                 | C++      | [`genera.cpp`](https://github.com/joseluis-hd/Compilers/blob/main/Module%20II/Code%20Generator/src/genera.cpp) / [`main.cpp`](https://github.com/joseluis-hd/Compilers/blob/main/Module%20II/Code%20Generator/main.cpp) / [`genera.hpp`](https://github.com/joseluis-hd/Compilers/blob/main/Module%20II/Code%20Generator/include/genera.hpp) |
+| 2.1 | Syntax Tree (Expressions)      | Python   | [2_1_syntax_tree.py](https://github.com/joseluis-hd/Compilers/blob/main/Module%20II/2_1_syntax_tree.py) |
+| 3   | Semantic Automaton             | Python   | [3_semantic_automaton.py](https://github.com/joseluis-hd/Compilers/blob/main/Module%20II/3_semantic_automaton.py) |
+| 4   | Syntactic Analyzer (File-based)| C++      | [`sintactico.cpp`](https://github.com/joseluis-hd/Compilers/blob/main/Module%20II/Syntactic%20Analyzer/sintactico.cpp) / [`main.cpp`](https://github.com/joseluis-hd/Compilers/blob/main/Module%20II/Syntactic%20Analyzer/main.cpp) / [`sintactico.hpp`](https://github.com/joseluis-hd/Compilers/blob/main/Module%20II/Syntactic%20Analyzer/sintactico.hpp) |
+| 4.1 | Syntactic (Mini Language)      | Python   | [4_1_syntactic.py](https://github.com/joseluis-hd/Compilers/blob/main/Module%20II/4_1_syntactic.py) |
 
 > **Note:** This README will be updated throughout the semester as new practices are added.
 
@@ -33,7 +35,6 @@ Each practice is designed for educational purposes within the **Compilers (IL359
 ## 🧩 Environment
 - **Python**  
   - Version: **3.13+**  
-
 
 - **C++**  
   - Compiler: **GCC / G++ 11+** (tested with C++17)  
