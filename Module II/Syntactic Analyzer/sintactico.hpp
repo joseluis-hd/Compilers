@@ -4,9 +4,8 @@
 #include <iostream>
 #include <cstdlib>
 
-// Ajusta estos includes si tus nombres difieren:
-#include "lexico.hpp"   // debe declarar: Lexico(char* fuente, int traza), siguienteToken, devuelveToken, existeTraza, lineaActual
-#include "genera.hpp"   // debe declarar: GeneraCodigo(char* objeto), code, end, pushc, push, load, store, add, neg, mul, div, mod, input, output
+#include "lexico.hpp"   
+#include "genera.hpp"  
 
 class Sintactico {
     // Reglas de la gramática
