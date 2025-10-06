@@ -1,1 +1,7 @@
-if(variable==3){}
+if (
+  variable
+  ==
+  12345
+)
+{
+}

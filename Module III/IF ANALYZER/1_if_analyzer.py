@@ -1,6 +1,6 @@
 '''
 José Luis Haro Díaz
-1. If Analyzer (Python, OOP)
+1. If Analyzer
 '''
 
 from typing import List, Optional, Tuple
@@ -29,40 +29,53 @@ class Lexico:
         lines: List[int] = []
 
         def push(tok: str):
-            tokens.append(tok); lines.append(line)
+            tokens.append(tok)
+            lines.append(line)
 
         while i < n:
             c = s[i]
 
             if c == '\n':
-                line += 1; i += 1; continue
-            if c.isspace():
-                i += 1; continue
+                line += 1
+                i += 1
+                continue
 
-            # identifiers / reserved ('if'), letters only
+            if c.isspace():
+                i += 1
+                continue
+
             if c.isalpha():
                 j = i + 1
                 while j < n and s[j].isalpha():
                     j += 1
-                push(s[i:j]); i = j; continue
+                lex = s[i:j]
+                if lex.lower() == 'if':
+                    push('if')
+                else:
+                    push(lex)
+                i = j
+                continue
 
-            # numbers (multi-digit)
             if c.isdigit():
                 j = i + 1
                 while j < n and s[j].isdigit():
                     j += 1
-                push(s[i:j]); i = j; continue
+                push(s[i:j])
+                i = j
+                continue
 
-            # two-char operator '=='
             if c == '=' and i + 1 < n and s[i + 1] == '=':
-                push('=='); i += 2; continue
+                push('==')
+                i += 2
+                continue
 
-            # single-char symbols
             if c in '(){}=':
-                push(c); i += 1; continue
+                push(c)
+                i += 1
+                continue
 
-            # anything else becomes a single token (will be rejected in syntax)
-            push(c); i += 1
+            push(c)
+            i += 1
 
         return tokens, lines
 
@@ -70,7 +83,8 @@ class Lexico:
         if self._buffer:
             tok, lin = self._buffer.pop()
             self._current_line = lin
-            if self.trace: print(f"LEXER: (buffer) -> '{tok}'")
+            if self.trace:
+                print(f"LEXER: (buffer) -> '{tok}'")
             return tok
 
         if self.pos >= len(self.tokens):
@@ -80,24 +94,23 @@ class Lexico:
         tok = self.tokens[self.pos]
         self._current_line = self._lines[self.pos]
         self.pos += 1
-        if self.trace: print(f"LEXER: token='{tok}' (line {self._current_line})")
+        if self.trace:
+            print(f"LEXER: token='{tok}' (line {self._current_line})")
         return tok
 
     def ungetToken(self, token: str):
         self._buffer.append((token, self._current_line))
-        if self.trace: print(f"LEXER: unget '{token}' (line {self._current_line})")
+        if self.trace:
+            print(f"LEXER: unget '{token}' (line {self._current_line})")
 
-
-# -----------------------------
-# Parser (with simple semantics)
-# Grammar (target of this activity):
-#   IfStmt -> 'if' '(' Ident '==' Number ')' '{' '}'
-# Semantic rule: relational operator must be '=='
-# -----------------------------
 class Parser:
     def __init__(self, src: str, trace: int = 1):
         self.lex = Lexico(src, trace)
         self.trace = self.lex.existsTrace()
+
+    @staticmethod
+    def _is_ident(x: str) -> bool:
+        return len(x) > 0 and x[0].isalpha() and all(ch.isalnum() or ch == '_' for ch in x)
 
     def error(self, code: int, extra: str = ""):
         line = self.lex.currentLine()
@@ -119,7 +132,8 @@ class Parser:
         raise SystemExit(f"LINE {line} SYNTAX/SEMANTIC ERROR: {msg}")
 
     def parse(self) -> bool:
-        if self.trace: print("PARSER: <IF_STMT>")
+        if self.trace:
+            print("PARSER: <IF_STMT>")
 
         # 'if'
         t = self.lex.nextToken()
@@ -130,15 +144,14 @@ class Parser:
         if self.lex.nextToken() != '(':
             self.error(2)
 
-        # identifier (variable)
+        # identifier
         ident = self.lex.nextToken()
-        if not (ident.isalpha() and ident.islower()):
+        if not self._is_ident(ident):
             self.error(3, f"got '{ident}'")
 
         # relational operator '=='
         op = self.lex.nextToken()
         if op == '=':
-            # semantic: single '=' is NOT allowed
             self.error(4, "found '=' (assignment) instead of '=='")
         if op != '==':
             self.error(4, f"got '{op}'")
@@ -160,14 +173,14 @@ class Parser:
         if self.lex.nextToken() != '}':
             self.error(8)
 
-        # ensure no trailing garbage
+        # no trailing garbage
         tail = self.lex.nextToken()
-        if tail not in ('\0',):
+        if tail != '\0':
             self.error(10, f"got '{tail}'")
 
-        if self.trace: print("PARSER: IF statement is valid")
+        if self.trace:
+            print("PARSER: IF statement is valid")
         return True
-
 
 # -----------------------------
 # Main
@@ -186,7 +199,6 @@ def main():
     ok = p.parse()
     if ok:
         print("VALID IF")
-
 
 if __name__ == "__main__":
     main()
