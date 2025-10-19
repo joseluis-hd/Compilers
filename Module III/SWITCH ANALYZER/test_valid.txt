@@ -1,4 +1,4 @@
-switch(variable){
+switch(){
     case: a = 3 break;
     case: b break;
 }
