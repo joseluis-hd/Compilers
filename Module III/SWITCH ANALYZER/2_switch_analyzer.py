@@ -139,10 +139,10 @@ class Parser:
             4: "EXPECTED ')'",
             5: "EXPECTED '{'",
             6: "EXPECTED 'case'",
-            #7: "EXPECTED ':'",
+            7: "EXPECTED ':'",
             8: "EXPECTED instruction (identifier or 'id = number')",
             9: "EXPECTED 'break'",
-            #10: "EXPECTED ';'",
+            10: "EXPECTED ';'",
             11: "EXPECTED '}'",
             12: "EXTRA SYMBOLS AFTER SWITCH",
         }
@@ -204,15 +204,15 @@ class Parser:
         if t != 'case':
             self.error(6, f"got '{t}'")
 
-        #if self.lex.nextToken() != ':':
-            #self.error(7)
+        if self.lex.nextToken() != ':':
+            self.error(7)
 
         self.instruction()
 
         if self.lex.nextToken() != 'break':
             self.error(9)
-        #if self.lex.nextToken() != ';':
-         #   self.error(10)
+        if self.lex.nextToken() != ';':
+            self.error(10)
 
     # Instruction -> Ident | Ident '=' Number
     def instruction(self):
