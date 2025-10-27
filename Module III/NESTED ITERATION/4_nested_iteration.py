@@ -1,6 +1,6 @@
 '''
 José Luis Haro Díaz
-8. Nested Iteration – while with nested if (Python, OOP)
+8. Nested Iteration
 '''
 
 from typing import List, Tuple
@@ -15,7 +15,7 @@ class Lexico:
         self.tokens, self._lines = self._tokenize(source)
         self.pos = 0
         self._current_line = 1
-        self._buffer: List[Tuple[str, int]] = []  # (token, line)
+        self._buffer: List[Tuple[str, int]] = []
 
     def existsTrace(self) -> int:
         return self.trace
@@ -39,7 +39,6 @@ class Lexico:
             if c.isspace():
                 i += 1; continue
 
-            # identifiers / reserved words
             if c.isalpha() or c == '_':
                 j = i + 1
                 while j < n and (s[j].isalnum() or s[j] == '_'):
@@ -53,24 +52,20 @@ class Lexico:
                 i = j
                 continue
 
-            # numbers (multi-digit)
             if c.isdigit():
                 j = i + 1
                 while j < n and s[j].isdigit():
                     j += 1
                 push(s[i:j]); i = j; continue
 
-            # two-char operators
             if i + 1 < n:
                 pair = s[i:i+2]
                 if pair in ('<=', '>=', '==', '!='):
                     push(pair); i += 2; continue
 
-            # single-char operators / symbols
             if c in '(){};<>=:+-*/%':
                 push(c); i += 1; continue
 
-            # unknown char → still a token (parser will reject)
             push(c); i += 1
 
         return tokens, lines
@@ -96,7 +91,6 @@ class Lexico:
         self._buffer.append((token, self._current_line))
         if self.trace:
             print(f"LEXER: unget '{token}' (line {self._current_line})")
-
 
 class Parser:
     def __init__(self, src: str, trace: int = 1):
@@ -165,10 +159,8 @@ class Parser:
         if self.lex.nextToken() != '}':
             self.error(5)
 
-    # require exactly one nested if-structure inside while block
     def inner_if_required(self):
-        # We accept optional stray tokens before 'if', but the assignment examples
-        # imply the if should be present. We'll look ahead until 'if' or '}'.
+
         depth = 0
         while True:
             t = self.lex.nextToken()
@@ -178,18 +170,14 @@ class Parser:
                 depth += 1
             elif t == '}':
                 if depth == 0:
-                    # we reached end of while-block without finding 'if'
                     self.lex.ungetToken('}')
                     self.error(9)
                 depth -= 1
             elif t == 'if':
-                # put it back and parse the if
                 self.lex.ungetToken(t)
                 self.if_stmt()
                 return
-            # else: keep scanning tokens until 'if' or '}' at current level
 
-    # if '(' Cond ')' '{' Block '}'
     def if_stmt(self):
         if self.lex.nextToken() != 'if':
             self.error(9)
@@ -200,11 +188,10 @@ class Parser:
             self.error(3)
         if self.lex.nextToken() != '{':
             self.error(4)
-        self._skip_block_body()   # don't consume the closing '}'
+        self._skip_block_body()   
         if self.lex.nextToken() != '}':
             self.error(5)
 
-    # Cond -> Ident RelOp Number
     def cond(self):
         ident = self.lex.nextToken()
         if not self._is_ident(ident):
@@ -216,7 +203,6 @@ class Parser:
         if not self._is_number(num):
             self.error(8, f"got '{num}'")
 
-    # Skip any tokens until the matching '}' at the same nesting level
     def _skip_block_body(self):
         if self.trace:
             print("PARSER: <BLOCK_BODY> (skipping until matching '}')")
@@ -232,7 +218,6 @@ class Parser:
                     self.lex.ungetToken(t)
                     return
                 depth -= 1
-
 
 # =============================
 # Main
