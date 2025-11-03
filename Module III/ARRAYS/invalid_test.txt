@@ -1,0 +1,6 @@
+int arreglo[];
+for (int x=0; x<5; x++) {
+    if (x < 10) {
+        arreglo[x] = x + 1;
+    }
+}
